@@ -31,7 +31,7 @@ app.post('/api/notes', (req, res) => {
         const newNote = {
             title,
             text,
-            note_id: uniqueId()
+            id: uniqueId()
         };
 
         readAndAppend(newNote, './db/db.json');
@@ -46,7 +46,7 @@ app.delete('/api/notes/:id', (req, res) => {
     readFromFile('./db/db.json')
         .then(data => JSON.parse(data))
         .then(response => {
-            const newNoteList = response.filter(note => note.note_id !== noteId);
+            const newNoteList = response.filter(note => note.id !== noteId);
             writeFile('./db/db.json', JSON.stringify(newNoteList, null, 4), err => 
                 err ? console.error(err) : console.log("Note successfully deleted"))
             res.json(newNoteList);
