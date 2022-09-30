@@ -3,6 +3,7 @@ const path = require('path');
 const { clog } = require('./middleware/clog');
 const uniqueId = require('./helpers/uniqueId');
 const {readFromFile, readAndAppend} = require("./helpers/fsUtil");
+const { writeFile } = require('fs');
 
 const PORT = process.env.PORT  || 3001;
 
@@ -39,6 +40,18 @@ app.post('/api/notes', (req, res) => {
         res.error("Error");
     }    
 });
+
+app.delete('/api/notes/:id', (req, res) => {
+    const noteId = req.params.id;
+    readFromFile('./db/db.json')
+        .then(data => JSON.parse(data))
+        .then(response => {
+            const newNoteList = response.filter(note => note.note_id !== noteId);
+            writeFile('./db/db.json', JSON.stringify(newNoteList, null, 4), err => 
+                err ? console.error(err) : console.log("Note successfully deleted"))
+            res.json(newNoteList);
+        })
+})
 
 app.get('*', (req, res) =>
     res.sendFile(path.join(__dirname, '/public/index.html'))

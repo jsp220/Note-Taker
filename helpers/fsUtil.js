@@ -5,7 +5,7 @@ const readFromFile = util.promisify(fs.readFile);
 
 const writeToFile = (folder, content) =>
     fs.writeFile(folder, JSON.stringify(content, null, 4), err =>
-    err ? console.error(err) : console.info(`\nData written to ${destination}`)
+    err ? console.error(err) : console.info(`\nData written to ${folder}`)
     );
 
 const readAndAppend = (content, file) => {
