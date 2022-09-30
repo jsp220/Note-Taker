@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const { clog } = require('./middleware/clog');
-const { v4: uuidv4 } = require('uuid');
+const uniqueId = require('./helpers/uniqueId');
 const {readFromFile, readAndAppend} = require("./helpers/fsUtil");
 
 const PORT = process.env.PORT  || 3001;
@@ -30,7 +30,7 @@ app.post('/api/notes', (req, res) => {
         const newNote = {
             title,
             text,
-            note_id: uuidv4()
+            note_id: uniqueId()
         };
 
         readAndAppend(newNote, './db/db.json');
