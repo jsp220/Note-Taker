@@ -1,6 +1,11 @@
 [
     {
-        "title":"Test Title",
-        "text":"Test text"
+        "title": "Test Title",
+        "text": "Test text"
+    },
+    {
+        "title": "Tip must be at least 15 characters long",
+        "text": "abc",
+        "note_id": "03593303-d2f9-4269-ad0a-f17bc61e48ea"
     }
 ]
