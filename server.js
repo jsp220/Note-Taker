@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const { clog } = require('./middleware/clog');
+// const { clog } = require('./middleware/clog');
 const uniqueId = require('./helpers/uniqueId');
 const {readFromFile, readAndAppend} = require("./helpers/fsUtil");
 const { writeFile } = require('fs');
